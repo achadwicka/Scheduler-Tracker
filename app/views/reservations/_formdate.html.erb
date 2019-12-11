@@ -1,0 +1,13 @@
+<%= form_tag reservations_go_new_path do %>
+  
+    <div class="field">
+      <%= label_tag :date %><br />
+      <%= date_field_tag :date, nil, :required =>  true, min: Date.today + 1%>
+    </div>
+  
+    <%= hidden_field_tag :doctor, doctor.id%>
+  
+    <div class="actions">
+      <%= submit_tag %>
+    </div>
+  <% end %>

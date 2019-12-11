@@ -1,0 +1,28 @@
+<h1>Blocks</h1>
+<div class="container">
+  <h2>Bloques Disponibles</h2>
+  <p>En la siguiente tabla se muestran las horas disponibles</p>   
+  <%= link_to 'New Block', new_block_path %>  
+  <br></br>         
+  <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th> Descripción </th>
+      <th> Fecha </th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+    <tbody>
+    <% @blocks.each do |block| %>
+      <tr>
+        <td><%= block.description %></td>
+        <td><%= block.date %></td>
+        <td><%= link_to 'Reservar', new_reservation_path(:block => block) %></td>
+        <td><%= link_to 'Show', block %></td>
+        <td><%= link_to 'Edit', edit_block_path(block) %></td>
+        <td><%= link_to 'Destroy', block, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+</div>

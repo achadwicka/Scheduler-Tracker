@@ -1,0 +1,13 @@
+
+<%= link_to 'Edit', edit_block_path(@block) %> |
+<%= link_to 'Back', blocks_path %>
+<center>
+<div class="card" style="width:400px">
+  <img class="card-img-top" src="https://image.freepik.com/vector-gratis/ilustracion-clinica-doctor_1270-69.jpg" alt="Card image">
+  <div class="card-body">
+    <h4 class="card-title"><%=@block.date%></h4>
+    <p class="card-text"><%=@block.description%></p>
+    <%= link_to 'Reservar', new_reservation_path(:block => @block)%>
+  </div>
+</div>
+</center>

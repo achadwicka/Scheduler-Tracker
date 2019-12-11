@@ -1,0 +1,38 @@
+<script>
+$(document).ready(function(){
+  $('.toast').toast('show');
+});
+</script>
+<center>
+
+<h2> Historial de reservas</h2>
+<div class='container'>
+	<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th> Fecha </th>
+			<th> Hora </th>
+			<th> Doctor </th>
+			<th> Ver reserva </th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @relation.each do |relation| %>
+			<% if relation['client'] = current_client  %>
+				<tr>
+					<% @reserva = Reservation.find(relation['id'])%>
+					<td><%= relation['fecha'] %> </td>
+					<td><%= relation['hora'] %></td>
+					<td><%= relation['doc'] %></td>
+					<td><%= link_to 'Ir', @reserva %></td>
+				</tr>
+			<% end %>
+		<% end %>
+	</tbody>
+	</table>
+
+	
+</div>
+
+
+</center>

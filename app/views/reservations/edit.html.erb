@@ -1,0 +1,14 @@
+<center>
+<div class="card" style="width:70%; margin-top:50px;">
+  <div class="card-body">
+    <h1 class="card-title"Edita tu Reserva</h1>
+    <%= link_to 'Volver', :back %>
+
+<%= render 'form', reservation: @reservation %>
+
+<%= link_to 'Show', @reservation %> |
+<%= link_to 'Back', reservations_path %>
+
+    </div>
+</div>
+</center>

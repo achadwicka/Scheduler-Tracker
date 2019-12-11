@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<script>
+$(document).ready(function(){
+  $('.toast').toast('show');
+});
+</script>
+
+<center>
+<div class="back">
+  <%= link_to 'Volver', :back %>
+</div>
+<div class="card" style="width:70%; margin-top:-10px;">
+  <div class="card-body">
+    <h1 class="card-title">Reservas en este día</h1>
+      <h4> Fecha: <%= @fecha %></h1>
+      <h4> Doctor: <%= @doctor.first_name %> <%= @doctor.last_name %></h1>
+      </hr>
+      <h5> Elija la hora a editar </h5> 
+    </div>
+</div>
+</center>
+
+<%= week_calendar :start_date => @date do |date|%>
+  <%= date %>
+  <% if date.to_s == @date.to_s %>
+    <div>
+      <% @blocks.each do |block| %>
+        <% @reservations.each do |reservation| %>
+            <% if reservation.block_id == block.id %>
+            <div class="toast" data-autohide="false">
+                <div class="toast-header">
+                    <p> Tienes una reserva a las: <%= block.date %> </p>
+                </div>
+                <div class="toast-body">
+                    <% @reserva = Reservation.find(reservation.id)%>
+                    <%= link_to 'Ver', @reserva, class: "btn btn-outline-info btn-sm" %>
+                </div>
+            </div>
+            <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+
+

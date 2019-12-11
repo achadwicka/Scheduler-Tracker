@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<center><h1>Clientes en Tratamientos con usted, Dr. <%= @doctor.first_name %> <%= @doctor.last_name %></h1>
+<hr>
+<table class="list-group center" style="margin-left:40%;">
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @clients.each do |client| %>
+      <tr class="list-group-item d-flex justify-content-between align-items-center" style="width:30%;">
+          <td><p><%= client.first_name %> <%= client.last_name %></td>
+          <td><%= link_to 'Ver', treatments_show_path(:client => client.id, :doctor => @doctor.id), class: "btn btn-outline-primary" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table></center>
+
+<br>
+
+<center><%= link_to 'Back', root_path, class: "btn btn-outline-primary" %></center>
+
+

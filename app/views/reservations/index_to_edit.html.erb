@@ -1,0 +1,34 @@
+<center>
+<div class="back">
+  <%= link_to "Volver", :back %>
+</div> 
+<div class="card" style="width:70%; margin-top:-20px;">
+  <div class="card-body">
+    <h1 class="card-title">Edita uno Reserva: Elige al Doctor</h1>
+
+      <div class="container">
+      
+        <p>En la siguiente tabla se muestran los doctores</p>     
+        <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th> Nombre </th>
+            <th> Email </th>
+            <th colspan="4"></th>
+          </tr>
+        </thead>
+          <tbody>
+          <% @doctors.each do |doctor| %>
+            <tr>
+              <td><%= doctor.first_name %></td>
+              <td><%= doctor.email %></td>
+              <td><%= link_to 'Editar', pick_date_to_edit_path(:doctor => doctor) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+        </table>
+      </div>
+    
+</div>
+</div>
+</center>

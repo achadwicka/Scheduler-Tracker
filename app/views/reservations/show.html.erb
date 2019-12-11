@@ -1,0 +1,17 @@
+<center>
+<h2> Reserva realizada con éxito!</h2>
+</br>
+<div class="card" style="width:400px">
+  <img class="card-img-top" src="https://image.freepik.com/vector-gratis/ilustracion-clinica-doctor_1270-69.jpg" alt="Card image">
+  <div class="card-body">
+  	<h4 class="card-title"><%=@fecha%></h4>
+    <h4 class="card-title"><%=@block.date%></h4>
+
+    <p class="card-text">Cliente: <%=@client.first_name%> <%=@client.last_name%> -  Mail: <%=@client.email%></p>
+    <p class="card-text">Doctor: <%=@doctor.first_name%> <%=@doctor.last_name%> -  Mail: <%=@doctor.email%></p>
+    <a><%= link_to 'Mis reservas', client_path %></a>|
+
+    <a><%= link_to 'Cancelar', reservation_path(@reservation), method: :delete %></a>
+  </div>
+</div>
+</center>

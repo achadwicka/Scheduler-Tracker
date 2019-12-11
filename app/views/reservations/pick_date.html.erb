@@ -1,0 +1,27 @@
+<center>
+<div class="card" style="width:70%; margin-top:-10px;">
+  <div class="card-body">
+    <h3>Calendario</h3>
+    <h2 class="card-title">Nueva Reserva: Elige el Día</h2>
+      <div class="back">
+        <%= link_to 'Volver', :back %>
+      </div>
+  </div>
+</div>
+</center>        
+<%= month_calendar do |date| %>
+  <%= date %>
+  <% if date > Date.today && date.strftime("%A").downcase != "sunday" && date.strftime("%A").downcase != "saturday" %>
+    <% @reservation_bll = Reservation.where("date = ? AND doctor_id = ?", date.to_date, @doctor.id).pluck(:block_id) + [200] %>
+    <% @blocks = Block.where("id NOT IN (?)", @reservation_bll)%>
+    <% if @blocks.length != 0 %>
+      <%= form_tag reservations_go_new_path do %>
+        <%= hidden_field_tag :date, date%>
+        <%= hidden_field_tag :doctor, @doctor.id%>  
+        <div class="actions">
+          <%= submit_tag "Ver Disponibilidad", class: "btn btn-outline-primary btn-sm" %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

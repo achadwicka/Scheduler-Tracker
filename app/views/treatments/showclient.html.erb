@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<center>
+<h1>Tus Tratamientos</h1>
+<% @doctorscomments.each do |doctor|%>
+    <h2>Tratamiento con el Dr. <%= doctor.first_name %> <%= doctor.last_name %><h2>
+    <hr>
+    <% @treatmentscomments.each do |comment| %>
+        <% if doctor.id == comment.doctor_id %>
+            <p><%= comment.created_at.to_s[0, 20] %>: <%= comment.comment %></p>
+        <% end %>
+    <%end%>
+    <hr>
+<% end %>
+<%= link_to 'Back', root_path, class: "btn btn-outline-primary"  %></center>

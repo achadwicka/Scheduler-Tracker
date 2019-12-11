@@ -1,0 +1,58 @@
+<script>
+$(document).ready(function(){
+  $('.toast').toast('show');
+});
+</script>
+<center>
+
+<h2>Calendario de mis reservas</h2>
+
+<%= month_calendar events: @events do |date, meetings| %>
+  <%= date %>
+
+  <% meetings.each do |meeting| %>
+	<div class="toast" data-autohide="false">
+		<div class="toast-header">
+			<p> Tienes una reserva a las: <%= meeting["hora"] %> </p>
+		</div>
+		<div class="toast-body">
+			<% @reserva = Reservation.find(meeting['id'])%>
+			<%= link_to 'Ver', @reserva, class: "btn btn-outline-info btn-sm" %>
+		</div>
+	</div>
+  <% end %>
+<% end %>
+
+<h2> Tabla de reservas</h2>
+<div class='container'>
+	<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th> Fecha </th>
+			<th> Hora </th>
+			<th> Doctor </th>
+			<th> Ver reserva </th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @relation.each do |relation| %>
+			<% if relation['fecha'].to_date > (Time.now - 60 * 60 * 4).to_date %>
+				<tr>
+					<% @reserva = Reservation.find(relation['id'])%>
+					<td><%= relation['fecha'] %> </td>
+					<td><%= relation['hora'] %></td>
+					<td><%= relation['doc'] %></td>
+					<td><%= link_to 'Ir', @reserva %></td>
+				</tr>
+			<% end %>
+		<% end %>
+	</tbody>
+	</table>
+
+
+</div>
+ 
+
+
+
+</center>

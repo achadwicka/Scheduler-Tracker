@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<center>
+<div class="back">
+  <%= link_to 'Volver', :back %>
+</div>
+<div class="card" style="width:70%; margin-top:50px;">
+  <div class="card-body">
+    <h1 class="card-title">Nueva Reserva: Elige tu Hora</h1>
+      <h4> Fecha: <%= @fecha %></h1>
+      <h4> Doctor: <%= @doctor.first_name %></h1>
+      </hr>
+      <h5> Elija la hora disponible </h5> 
+    </div>
+</div>
+</center>
+
+<%= week_calendar :start_date => @date do |date|%>
+  <%= date %>
+  <% if date.to_s == @date.to_s %>
+    <div class="important-day">
+      <% @blocks.each do |block| %>
+        <div>
+          <i class="fas fa-clock"></i>
+          <%= block.date %>
+          <%= form_with model: @reservation, local: true do |form| %>
+
+            <%= form.hidden_field :block_id, value: block.id%>
+            <%= form.hidden_field :client_id, value: @client.id%>
+            <%= form.hidden_field :doctor_id, value: @doctor.id%>
+            <%= form.hidden_field :date, value: @date.to_date%>
+
+            <div class="actions">
+              <%= form.submit 'Reservar', class: "btn btn-success btn-sm" %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+
+

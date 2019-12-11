@@ -1,0 +1,10 @@
+<center><h1>Tratamiento del cliente <%= @client.first_name %> <%= @client.last_name %></h1>
+<hr>
+<% @treatmentscomments.each do |comment| %>
+    <tr>
+        <td><p><%= comment.created_at.to_s[0, 20] %>: <%= comment.comment %></td>
+    </tr>
+<% end %>
+<hr>
+<%= render 'form', treatment: @treatment %>
+<%= link_to 'Back', treatments_path, class: "btn btn-outline-primary" %></center>

@@ -1,0 +1,23 @@
+<center>
+<div class="card" style="width:70%; margin-top:-10px;">
+  <div class="card-body">
+    <h3>Calendario</h3>
+    <h2 class="card-title">Elige el Día a editar</h2>
+      <div class="back">
+        <%= link_to 'Volver', :back %>
+      </div>
+  </div>
+</div>
+</center>        
+<%= month_calendar do |date| %>
+  <%= date %>
+  <% if date > Date.today && date.strftime("%A").downcase != "sunday" && date.strftime("%A").downcase != "saturday" %>
+    <%= form_tag reservations_go_edit_path do %>
+        <%= hidden_field_tag :date, date%>
+        <%= hidden_field_tag :doctor, @doctor.id%>  
+        <div class="actions">
+            <%= submit_tag "Editar Día", class: "btn btn-outline-info btn-sm" %>
+        </div>
+    <% end %>
+  <% end %>
+<% end %>

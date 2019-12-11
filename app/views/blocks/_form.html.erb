@@ -1,0 +1,27 @@
+<%= form_with(model: block, local: true) do |form| %>
+  <% if block.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(block.errors.count, "error") %> prohibited this block from being saved:</h2>
+
+      <ul>
+      <% block.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :date %><br />
+    <%= form.datetime_field :date, autofocus: true, autocomplete: "date" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %><br />
+    <%= form.text_field :description, autofocus: true, autocomplete: "description" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

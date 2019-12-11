@@ -1,0 +1,25 @@
+<%= form_with(model: @treatment, local: true) do |form| %>
+  <% if @treatment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@treatment.errors.count, "error") %> prohibited this treatment from being saved:</h2>
+
+      <ul>
+      <% @treatment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <% form.label :comment %><br />
+    <%= form.text_area :comment %>
+  </div>
+
+  <%= form.hidden_field :client_id, value: @client.id%>
+  <%= form.hidden_field :doctor_id, value: @doctor.id%>
+
+  <div class="actions">
+    <%= form.submit "Nuevo Comentario", class: "btn btn-outline-primary" %>
+  </div>
+<% end %>
